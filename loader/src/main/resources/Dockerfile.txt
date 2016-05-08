@@ -1,0 +1,9 @@
+FROM java:8
+CMD []
+EXPOSE 8080
+EXPOSE 27000
+EXPOSE 22
+ADD /cubicle-connectors-microconcept-1.0.0.jar /cubicle-connectors-microconcept-1.0.0.jar
+RUN bash -c 'touch /cubicle-connectors-microconcept-1.0.0.jar'
+
+ENTRYPOINT ["java", "-jar", "/cubicle-connectors-microconcept-1.0.0.jar"]

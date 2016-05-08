@@ -1,0 +1,12 @@
+{ "fullbooks" : [ {
+    "fullTitle" : "Chip techniques",
+    "quantity" : 1,
+    "milk" : "SEMI",
+    "size" : "LARGE",
+    "baicBook" : {
+      "currency" : "EUR",
+      "value" : 4.20
+    }
+  } ],
+  "location" : "TAKE_AWAY"
+}

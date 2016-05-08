@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+ 
+	<artifactId>loader</artifactId>
+	<version>1.0-SNAPSHOT</version>
+    <description>Metabook loader</description>
+    <name>Metabook :: Loader</name>
+	<packaging>jar</packaging>
+<parent>
+		<groupId>org.metabook</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0-SNAPSHOT</version>	
+</parent> 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<hibernate.version>4.3.9.Final</hibernate.version>
+		<camel.version>2.15.2</camel.version>
+		<spring.version>4.1.7.RELEASE</spring.version>
+		<slf4j.version>1.6.6</slf4j.version>
+		    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <jdk.version>1.8</jdk.version>
+    <compiler.fork>1.8</compiler.fork>
+		<docker.image.prefix>bookblast</docker.image.prefix>    
+	</properties>
+
+	<organization>
+		<name>Metabook</name>
+	</organization>
+
+	<build>
+		<defaultGoal>install</defaultGoal>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<!-- 				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration> -->
+			</plugin>
+			<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+      <mainClass>org.metabook.loader.offline.MetaBookLoaderConfigContext</mainClass>
+    </configuration>
+    <executions>
+      <execution>
+        <goals>
+          <goal>repackage</goal>
+        </goals>
+      </execution>
+    </executions>
+</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<dependencies>    
+	<dependency>
+		<groupId>org.metabook</groupId>
+  <artifactId>repository</artifactId>
+  <exclusions>
+  	<exclusion>
+  		<artifactId>spring-boot-starter-web</artifactId>
+  		<groupId>org.springframework.boot</groupId>
+  	</exclusion>
+  	<exclusion>
+  		<artifactId>spring-boot-starter-data-rest</artifactId>
+  		<groupId>org.springframework.boot</groupId>
+  	</exclusion>
+  	<exclusion>
+  		<artifactId>spring-boot-starter-data-jpa</artifactId>
+  		<groupId>org.springframework.boot</groupId>
+  	</exclusion>
+  </exclusions>
+	</dependency>
+<dependency>
+			<groupId>org.springframework.hateoas</groupId>
+			<artifactId>spring-hateoas</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-core</artifactId>
+			<version>${camel.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jpa</artifactId>
+			<version>${camel.version}</version>
+			<scope>provided</scope>
+		</dependency>		
+<!-- 		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-spring</artifactId>
+			<version>${camel.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-spring-javaconfig</artifactId>
+			<version>${camel.version}</version>
+			<scope>provided</scope>
+		</dependency> -->
+<!-- 		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jetty</artifactId>
+			<version>${camel.version}</version>
+			<scope>test</scope>
+		</dependency> -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-stream</artifactId>
+			<version>${camel.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+    <groupId>org.apache.camel</groupId>
+    <artifactId>camel-spring-boot</artifactId>
+    <version>${camel.version}</version>
+</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-xstream</artifactId>
+			<version>2.9.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.beanio</groupId>
+			<artifactId>beanio</artifactId>
+			<version>2.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-test</artifactId>
+			<version>${camel.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-test-spring</artifactId>
+			<version>${camel.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+      		</dependency>
+
+<!-- 		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>provided</scope>
+		</dependency> -->
+<!-- 		<dependency>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>spring-osgi-core</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency> -->
+		<!-- <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${spring.version}</version>
+			<scope>provided</scope>
+		</dependency>-->
+		<dependency>
+			<artifactId>poi-ooxml</artifactId>
+			<groupId>org.apache.poi</groupId>
+			<version>3.11</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.jongo</groupId>
+		    <artifactId>jongo</artifactId>
+		    <version>1.1</version>
+		    <scope>provided</scope>
+		</dependency>	
+		
+	   <dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.14.8</version>
+			<scope>provided</scope>
+		</dependency>
+
+    <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-jpa</artifactId>
+        </dependency>
+    <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx-events</artifactId>
+			<version>1.0.0.BUILD-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			</dependency>    			
+<!-- 			<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>${derby.version}</version>
+		</dependency>		
+		 -->
+		    <dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-dbcp2</artifactId>
+        <version>2.1</version>
+    </dependency>
+ <!--  <dependency>
+	<groupId>net.sourceforge.jtds</groupId>
+	<artifactId>jtds</artifactId>
+ </dependency>   -->
+ <dependency>
+  <groupId>com.microsoft.sqlserver</groupId>
+  <artifactId>sqljdbc41</artifactId>
+    <version>4.1</version>
+  </dependency>
+   <dependency>
+  <groupId>com.microsoft.sqlserver</groupId>
+  <artifactId>sqljdbc41</artifactId>
+    <version>4.1</version>
+  </dependency>
+  <dependency>
+  <groupId>org.postgresql</groupId>
+<artifactId>postgresql</artifactId>
+<version>9.4-1203-jdbc42</version>
+</dependency>
+	</dependencies>
+	<repositories>
+		<repository>
+			<id>spring-libs-snapshot</id>
+			<url>http://repo.spring.io/libs-snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+				<repository>
+			<id>spring-libs-releases</id>
+			<url>http://repo.spring.io/libs-releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-libs-snapshot</id>
+			<url>http://repo.spring.io/libs-snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+</project>
